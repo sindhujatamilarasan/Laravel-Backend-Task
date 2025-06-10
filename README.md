@@ -45,15 +45,15 @@ All product/payment routes are protected with `auth:sanctum` middleware.
 
 ## 🧪 Postman Collection
 
-A Postman collection is included in the `/postman/` folder (or exported separately) to test all API endpoints.
+A Postman collection is included as file Laravel_task_postman_collection.json to test all API endpoints.
 
 ---
 
 ## 🖥 Interface (Optional Bonus)
 
-A Blade-based interface is included at `/resources/views/home.blade.php` for demo purposes:
+A Blade-based interface is included at `/resources/views` for demo purposes:
 - Register/Login UI 
-- Product crud
-- Added Basic structure ui
+- Product CRUD operations
+- Added Basic structure UI
 
 Access it via:http://127.0.0.1:8000/
