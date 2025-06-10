@@ -4,23 +4,35 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
+    container_name: laravel_app
     volumes:
       - .:/var/www
     depends_on:
       - db
+    networks:
+      - laravel
+    ports:
+      - "8000:8000"
+    working_dir: /var/www
+    entrypoint: [ "sh", "-c", "composer install && php artisan migrate &&  php artisan serve --host=0.0.0.0 --port=8000" ]
 
   db:
     image: mysql:8.0
+    container_name: laravel_db
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
-    ports:
-      - "3306:3306"
+      MYSQL_DATABASE: laravel_task
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
     volumes:
       - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel
+
+networks:
+  laravel:
 
 volumes:
   dbdata:
